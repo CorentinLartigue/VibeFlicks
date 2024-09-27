@@ -1,0 +1,59 @@
+services:
+  php:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: php_container
+    volumes:
+      - ./backend:/app
+
+  web:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./backend:/app
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+
+
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react_container
+    ports:
+      - "3000:80"  
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+
+  db:  
+    image: mysql:5.7
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: vibeflicks  
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin_vibeflicks
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:  
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    environment:
+      PMA_HOST: db
+      PMA_USER: admin
+      PMA_PASSWORD: admin_vibeflicks
+    ports:
+      - "8081:80"  
+    depends_on:
+      - db
+
+volumes:
+  db_data:

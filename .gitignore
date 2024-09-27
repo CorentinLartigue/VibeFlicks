@@ -1,0 +1,33 @@
+# Node.js
+/frontend/node_modules
+/frontend/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Symfony
+/backend/vendor/
+var/
+.env.local
+.env.local.php
+.env.*.local
+.env.test
+.env.test.local
+.phpunit.result.cache
+
+# Ignore Docker-related files
+docker-compose.override.yml
+docker/nginx/logs/
+docker/postgres/data/
+docker/redis/data/
+docker/mariadb/data/
+
+# IDE / Editor settings
+.idea
+.vscode
+*.swp
+*.swo
