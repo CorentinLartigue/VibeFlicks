@@ -17,7 +17,8 @@ Ce projet combine un **backend Symfony** avec un **frontend React**, le tout con
 
 ```bash
 git clone https://github.com/CorentinLartigue/VibeFlicks.git
-cd VibeFlicks
+cd VibeFlicks/backend composer install
+cd ../
 
 2.Lancer le projet avec Docker :
 
