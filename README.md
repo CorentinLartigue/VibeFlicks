@@ -1,4 +1,4 @@
-# Projet Symfony + React
+# Projet Symfony + React En cours
 
 ## Description
 
